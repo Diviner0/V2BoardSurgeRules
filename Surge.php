@@ -25,7 +25,7 @@ class Surge
 
         $proxies = '';
         $proxyGroup = '';
-	    $HKProxies = '';
+	$HKProxies = '';
         $TWProxies = '';
         $SGProxies = '';
         $UKProxies = '';
@@ -67,6 +67,8 @@ class Surge
                 elseif (stripos($item['name'], 'US') !== false || stripos($item['name'], '美国') !== false) {
                     $USProxies .= $item['name'] . ', ';
                 }
+
+		// You could customise any group if you want, but add a string after line 33, and apply str_replace function after line 180
 
             }
             if ($item['type'] === 'vmess') {
@@ -171,7 +173,7 @@ class Surge
         $config = str_replace('$subs_domain', $subsDomain, $config);
         $config = str_replace('$proxies', $proxies, $config);
         $config = str_replace('$proxy_group', rtrim($proxyGroup, ', '), $config);
-	    $config = str_replace('$HK_proxies', rtrim($HKProxies, ', '), $config);
+	$config = str_replace('$HK_proxies', rtrim($HKProxies, ', '), $config);
         $config = str_replace('$TW_proxies', rtrim($TWProxies, ', '), $config);
         $config = str_replace('$SG_proxies', rtrim($SGProxies, ', '), $config);
         $config = str_replace('$UK_proxies', rtrim($UKProxies, ', '), $config);
@@ -183,7 +185,7 @@ class Surge
         $totalTraffic = round($user['transfer_enable'] / (1024*1024*1024), 2);
         $unusedTraffic = $totalTraffic - $useTraffic;
         $expireDate = $user['expired_at'] === NULL ? 'Never Expire' : date('Y-m-d H:i:s', $user['expired_at']);
-        $subscribeInfo = "title=Proxy Subscription Details, content=Upload Traffic: {$upload}GB\\nDownload Traffic: {$download}GB\\nRemaining Data:{$unusedTraffic}GB\\nPackage traffic: {$totalTraffic}GB\\nExpire Date: {$expireDate}";
+        $subscribeInfo = "title=Proxy Subscription Details, content=Upload Traffic: {$upload}GB\\nDownload Traffic: {$download}GB\\nRemaining Data: {$unusedTraffic}GB\\nPackage traffic: {$totalTraffic}GB\\nExpire Date: {$expireDate}";
         $config = str_replace('$subscribe_info', $subscribeInfo, $config);
 
         return response($config, 200)
