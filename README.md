@@ -1,12 +1,12 @@
-# xboardSurgeRules
-For Xboard Panel Surge Subscription use
+# V2BoardSurgeRules
+For V2Board Panel (including NewV2Board/Xboard) Surge Subscription use
 
 ---
-1. Use the command to determine the Xboard container id.
+1. Use the command to determine the Xboard container ID.
 ```
 docker ps
 ```
-2. Replace Surge.php file
+2. Replace the Surge.php file
 ```
 docker cp /path/on/host {container_id}:/www/app/Protocols/Surge.php
 ```
